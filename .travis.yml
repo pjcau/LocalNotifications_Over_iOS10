@@ -4,7 +4,9 @@ podfile: Podfile
 before_install:
     - gem install cocoapods
     - gem install xcpretty -N
+    - pwd
     - cd LocalNotifications_Over_iOS10 && pod repo update
+    - pwd
 script:
     xcodebuild build-for-testing -workspace LocalNotifications_Over_iOS10.xcworkspace -scheme LocalNotifications_Over_iOS10 -destination generic/platform=iOS
 
