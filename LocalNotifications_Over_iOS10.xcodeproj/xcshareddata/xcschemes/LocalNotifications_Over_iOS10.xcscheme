@@ -29,6 +29,16 @@
       language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "5F340AB11F7A73BD00520C30"
+               BuildableName = "LocalNotifications_Over_iOS10Tests.xctest"
+               BlueprintName = "LocalNotifications_Over_iOS10Tests"
+               ReferencedContainer = "container:LocalNotifications_Over_iOS10.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

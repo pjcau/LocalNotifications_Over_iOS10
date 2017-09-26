@@ -13,11 +13,22 @@
 		53353AD21D89C7AD0069804D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 53353AD11D89C7AD0069804D /* Assets.xcassets */; };
 		53353AD51D89C7AD0069804D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 53353AD31D89C7AD0069804D /* LaunchScreen.storyboard */; };
 		53353AE31D89F00E0069804D /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53353AE21D89F00E0069804D /* UIViewController+Extension.swift */; };
-		5F11D8D31F79251800A43DF5 /* kameleon_video_tutorial_v3.mov in Resources */ = {isa = PBXBuildFile; fileRef = 5F11D8D21F79119000A43DF5 /* kameleon_video_tutorial_v3.mov */; };
 		5F11D8D81F7A30B400A43DF5 /* NotificationObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F11D8D71F7A30B400A43DF5 /* NotificationObject.swift */; };
 		5F11D8D91F7A3D9200A43DF5 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F11D8D51F7A307700A43DF5 /* NotificationManager.swift */; };
+		5F340ABD1F7A73DB00520C30 /* NotificationManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F340ABC1F7A73DB00520C30 /* NotificationManagerTest.swift */; };
+		5F340ABF1F7A73F300520C30 /* NotificationObjectTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F340ABE1F7A73F300520C30 /* NotificationObjectTest.swift */; };
 		6F704805F86459ADB92E8BAF /* Pods_LocalNotifications_Over_iOS10.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5848FD45ED2F74325DF0F78 /* Pods_LocalNotifications_Over_iOS10.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5F340AB71F7A73BD00520C30 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 53353ABF1D89C7AC0069804D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 53353AC61D89C7AC0069804D;
+			remoteInfo = LocalNotifications_Over_iOS10;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		53353AC71D89C7AD0069804D /* LocalNotifications_Over_iOS10.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocalNotifications_Over_iOS10.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -28,9 +39,12 @@
 		53353AD41D89C7AD0069804D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		53353AD61D89C7AD0069804D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		53353AE21D89F00E0069804D /* UIViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
-		5F11D8D21F79119000A43DF5 /* kameleon_video_tutorial_v3.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = kameleon_video_tutorial_v3.mov; sourceTree = "<group>"; };
 		5F11D8D51F7A307700A43DF5 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		5F11D8D71F7A30B400A43DF5 /* NotificationObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationObject.swift; sourceTree = "<group>"; };
+		5F340AB21F7A73BD00520C30 /* LocalNotifications_Over_iOS10Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LocalNotifications_Over_iOS10Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5F340AB61F7A73BD00520C30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5F340ABC1F7A73DB00520C30 /* NotificationManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManagerTest.swift; sourceTree = "<group>"; };
+		5F340ABE1F7A73F300520C30 /* NotificationObjectTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationObjectTest.swift; sourceTree = "<group>"; };
 		C8E8B39885B3BFD04254F0B7 /* Pods-LocalNotifications_Over_iOS10.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocalNotifications_Over_iOS10.release.xcconfig"; path = "Pods/Target Support Files/Pods-LocalNotifications_Over_iOS10/Pods-LocalNotifications_Over_iOS10.release.xcconfig"; sourceTree = "<group>"; };
 		DAC1C0E65D7B5F308079A101 /* Pods-LocalNotifications_Over_iOS10.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocalNotifications_Over_iOS10.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LocalNotifications_Over_iOS10/Pods-LocalNotifications_Over_iOS10.debug.xcconfig"; sourceTree = "<group>"; };
 		F5848FD45ED2F74325DF0F78 /* Pods_LocalNotifications_Over_iOS10.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LocalNotifications_Over_iOS10.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -42,6 +56,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F704805F86459ADB92E8BAF /* Pods_LocalNotifications_Over_iOS10.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5F340AAF1F7A73BD00520C30 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				53353AC91D89C7AD0069804D /* LocalNotifications_Over_iOS10 */,
+				5F340AB31F7A73BD00520C30 /* LocalNotifications_Over_iOS10Tests */,
 				53353AC81D89C7AD0069804D /* Products */,
 				150484C75FB45607833B2454 /* Pods */,
 				88D9150D3DB913EEC078ED8C /* Frameworks */,
@@ -71,6 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				53353AC71D89C7AD0069804D /* LocalNotifications_Over_iOS10.app */,
+				5F340AB21F7A73BD00520C30 /* LocalNotifications_Over_iOS10Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -78,7 +101,6 @@
 		53353AC91D89C7AD0069804D /* LocalNotifications_Over_iOS10 */ = {
 			isa = PBXGroup;
 			children = (
-				5F11D8D21F79119000A43DF5 /* kameleon_video_tutorial_v3.mov */,
 				53353ACA1D89C7AD0069804D /* AppDelegate.swift */,
 				53353ACC1D89C7AD0069804D /* ViewController.swift */,
 				53353ACE1D89C7AD0069804D /* Main.storyboard */,
@@ -98,6 +120,16 @@
 				5F11D8D71F7A30B400A43DF5 /* NotificationObject.swift */,
 			);
 			path = NotificationManager;
+			sourceTree = "<group>";
+		};
+		5F340AB31F7A73BD00520C30 /* LocalNotifications_Over_iOS10Tests */ = {
+			isa = PBXGroup;
+			children = (
+				5F340ABC1F7A73DB00520C30 /* NotificationManagerTest.swift */,
+				5F340ABE1F7A73F300520C30 /* NotificationObjectTest.swift */,
+				5F340AB61F7A73BD00520C30 /* Info.plist */,
+			);
+			path = LocalNotifications_Over_iOS10Tests;
 			sourceTree = "<group>";
 		};
 		88D9150D3DB913EEC078ED8C /* Frameworks */ = {
@@ -131,13 +163,31 @@
 			productReference = 53353AC71D89C7AD0069804D /* LocalNotifications_Over_iOS10.app */;
 			productType = "com.apple.product-type.application";
 		};
+		5F340AB11F7A73BD00520C30 /* LocalNotifications_Over_iOS10Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5F340AB91F7A73BD00520C30 /* Build configuration list for PBXNativeTarget "LocalNotifications_Over_iOS10Tests" */;
+			buildPhases = (
+				5F340AAE1F7A73BD00520C30 /* Sources */,
+				5F340AAF1F7A73BD00520C30 /* Frameworks */,
+				5F340AB01F7A73BD00520C30 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5F340AB81F7A73BD00520C30 /* PBXTargetDependency */,
+			);
+			name = LocalNotifications_Over_iOS10Tests;
+			productName = LocalNotifications_Over_iOS10Tests;
+			productReference = 5F340AB21F7A73BD00520C30 /* LocalNotifications_Over_iOS10Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		53353ABF1D89C7AC0069804D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0800;
+				LastSwiftUpdateCheck = 0900;
 				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Robots and Pencils";
 				TargetAttributes = {
@@ -146,6 +196,12 @@
 						DevelopmentTeam = DNG3JLER88;
 						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
+					};
+					5F340AB11F7A73BD00520C30 = {
+						CreatedOnToolsVersion = 9.0;
+						DevelopmentTeam = DNG3JLER88;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 53353AC61D89C7AC0069804D;
 					};
 				};
 			};
@@ -163,6 +219,7 @@
 			projectRoot = "";
 			targets = (
 				53353AC61D89C7AC0069804D /* LocalNotifications_Over_iOS10 */,
+				5F340AB11F7A73BD00520C30 /* LocalNotifications_Over_iOS10Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -174,8 +231,14 @@
 			files = (
 				53353AD51D89C7AD0069804D /* LaunchScreen.storyboard in Resources */,
 				53353AD21D89C7AD0069804D /* Assets.xcassets in Resources */,
-				5F11D8D31F79251800A43DF5 /* kameleon_video_tutorial_v3.mov in Resources */,
 				53353AD01D89C7AD0069804D /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5F340AB01F7A73BD00520C30 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,7 +311,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5F340AAE1F7A73BD00520C30 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5F340ABD1F7A73DB00520C30 /* NotificationManagerTest.swift in Sources */,
+				5F340ABF1F7A73F300520C30 /* NotificationObjectTest.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5F340AB81F7A73BD00520C30 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 53353AC61D89C7AC0069804D /* LocalNotifications_Over_iOS10 */;
+			targetProxy = 5F340AB71F7A73BD00520C30 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		53353ACE1D89C7AD0069804D /* Main.storyboard */ = {
@@ -417,6 +497,50 @@
 			};
 			name = Release;
 		};
+		5F340ABA1F7A73BD00520C30 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DNG3JLER88;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = LocalNotifications_Over_iOS10Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.cynny.chameleon.LocalNotifications-Over-iOS10Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LocalNotifications_Over_iOS10.app/LocalNotifications_Over_iOS10";
+			};
+			name = Debug;
+		};
+		5F340ABB1F7A73BD00520C30 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DNG3JLER88;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = LocalNotifications_Over_iOS10Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.cynny.chameleon.LocalNotifications-Over-iOS10Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LocalNotifications_Over_iOS10.app/LocalNotifications_Over_iOS10";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -434,6 +558,15 @@
 			buildConfigurations = (
 				53353ADA1D89C7AD0069804D /* Debug */,
 				53353ADB1D89C7AD0069804D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5F340AB91F7A73BD00520C30 /* Build configuration list for PBXNativeTarget "LocalNotifications_Over_iOS10Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5F340ABA1F7A73BD00520C30 /* Debug */,
+				5F340ABB1F7A73BD00520C30 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
