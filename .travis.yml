@@ -6,5 +6,5 @@ before_install:
     - gem install xcpretty -N
     - cd LocalNotifications_Over_iOS10 && pod repo update
 script:
-    -xcodebuild build-for-testing -workspace LocalNotifications_Over_iOS10.xcworkspace -scheme LocalNotifications_Over_iOS10 -destination generic/platform=iOS
+    xcodebuild build-for-testing -workspace LocalNotifications_Over_iOS10.xcworkspace -scheme LocalNotifications_Over_iOS10 -destination generic/platform=iOS
 
