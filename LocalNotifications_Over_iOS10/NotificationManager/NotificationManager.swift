@@ -13,6 +13,7 @@ import CoreLocation
 import UIKit
 import SwiftDate
 
+
 class NotificationManager: NSObject {
     
     static let sharedInstance = NotificationManager()
@@ -163,13 +164,13 @@ class NotificationManager: NSObject {
         var repeatBool:Bool = false
         var triggerDate :DateComponents? = nil
         var updateDate = date
-        
+      /*
         switch notificationType {
         case .TwoWeekReminderType: updateDate = updateDate + 2.week
         case .SlideShowWillExpiredType: updateDate = updateDate + 2.day - 3.hour
         default: break
         }
-        
+      */
         if repeatDate != .None {
             repeatBool = true
             switch repeatDate {
