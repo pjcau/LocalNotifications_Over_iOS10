@@ -1,9 +1,13 @@
 language: objective-c
 osx_image: xcode9
 podfile: Podfile
+env:
+  - IOS_VERSION="11.0" DEVICE_NAME="iPhone 7"
 before_install:
     - gem install cocoapods
     - gem install xcpretty -N
     - pod repo update
+    - gem install simctl --no-rdoc --no-ri --no-document --quiet
+    - ruby -rsimctl -e 'SimCtl.warmup("$DEVICE_NAME", "iOS $IOS_VERSION", 300)'
 script:
-    travis_retry xcodebuild build-for-testing -workspace LocalNotifications_Over_iOS10.xcworkspace -scheme LocalNotifications_Over_iOS10 -destination \"platform=iOS Simulator,name=iPhone 7,OS=11.0\" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | xcpretty -c
+    travis_retry xcodebuild build-for-testing -workspace LocalNotifications_Over_iOS10.xcworkspace -scheme LocalNotifications_Over_iOS10 -destination "platform=iOS Simulator,name=$DEVICE_NAME,OS=$IOS_VERSION" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | xcpretty -c
