@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="LocalNotifications_Over_iOS10" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LocalNotifications_Over_iOS10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gY3-fP-Jql">
+                                <rect key="frame" x="22.5" y="28" width="330" height="29"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wZX-j4-jE1">
+                                <rect key="frame" x="108" y="248.5" width="159" height="30"/>
+                                <state key="normal" title="Schedule a Notification"/>
+                                <connections>
+                                    <action selector="scheduleNotificationAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qxp-oa-hBe"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qr0-vF-EOL">
+                                <rect key="frame" x="64" y="318.5" width="247" height="30"/>
+                                <state key="normal" title="How Many Scheduled Notifications?"/>
+                                <connections>
+                                    <action selector="howManyScheduledAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uys-aX-aOw"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uwa-sY-byy">
+                                <rect key="frame" x="68" y="388.5" width="239" height="30"/>
+                                <state key="normal" title="How Many Delivered Notifications?"/>
+                                <connections>
+                                    <action selector="howManyDeliveredAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ExR-Zx-fZS"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3nm-I6-mIX">
+                                <rect key="frame" x="76.5" y="458.5" width="222" height="30"/>
+                                <state key="normal" title="Remove all pending notification?"/>
+                                <connections>
+                                    <action selector="removeAllPending:" destination="BYZ-38-t0r" eventType="touchUpInside" id="X9i-MW-lsW"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gp6-wH-AOy">
+                                <rect key="frame" x="77" y="528" width="220" height="30"/>
+                                <state key="normal" title="Remove all delivery notification?"/>
+                                <connections>
+                                    <action selector="removeAllDelivery:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4vL-CI-Ls3"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="gp6-wH-AOy" firstAttribute="top" secondItem="3nm-I6-mIX" secondAttribute="bottom" constant="40" id="7M9-cx-BGH"/>
+                            <constraint firstItem="Uwa-sY-byy" firstAttribute="top" secondItem="qr0-vF-EOL" secondAttribute="bottom" constant="40" id="7Vp-zX-i0z"/>
+                            <constraint firstItem="gY3-fP-Jql" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Gkg-vK-dCi"/>
+                            <constraint firstItem="qr0-vF-EOL" firstAttribute="top" secondItem="wZX-j4-jE1" secondAttribute="bottom" constant="40" id="MoV-Oq-8x9"/>
+                            <constraint firstItem="wZX-j4-jE1" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ORQ-qT-7X6"/>
+                            <constraint firstItem="3nm-I6-mIX" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Su9-fF-Yja"/>
+                            <constraint firstItem="qr0-vF-EOL" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="YPA-dq-Ps0"/>
+                            <constraint firstItem="qr0-vF-EOL" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="e5f-pW-Rje"/>
+                            <constraint firstItem="gY3-fP-Jql" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="eAO-7U-Wcs"/>
+                            <constraint firstItem="Uwa-sY-byy" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="gJQ-K6-mbZ"/>
+                            <constraint firstItem="3nm-I6-mIX" firstAttribute="top" secondItem="Uwa-sY-byy" secondAttribute="bottom" constant="40" id="hgp-9h-YW3"/>
+                            <constraint firstItem="gp6-wH-AOy" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="xOq-30-zqb"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+</document>
