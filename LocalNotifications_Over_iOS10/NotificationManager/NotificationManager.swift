@@ -11,7 +11,7 @@ import Foundation
 import UserNotifications
 import CoreLocation
 import UIKit
-
+import SwiftDate
 
 class NotificationManager: NSObject {
     
@@ -93,7 +93,7 @@ class NotificationManager: NSObject {
     private class func scheduleUNUserNotification(notificationObj:NotificationObject) {
         requestAuthorization { granted in
             let content = createNotificationContent(notificationObj: notificationObj)
-            let trigger = calendarNotificationTrigger(notificationObj.date,notificationObj.repeats)
+            let trigger = calendarNotificationTrigger(notificationObj.notification, notificationObj.date,notificationObj.repeats)
     /*
             // Swift
             let snoozeAction = UNNotificationAction(identifier: "Snooze",
@@ -129,7 +129,10 @@ class NotificationManager: NSObject {
         content.sound = UNNotificationSound.default()
         content.badge = notificationObj.badgeCount
         content.userInfo = notificationObj.userInfo
-        content.attachments = notificationObj.attachment as! [UNNotificationAttachment]
+        if let attachementFiles =  notificationObj.attachment {
+            content.attachments =  attachementFiles as! [UNNotificationAttachment]
+        }
+       
         //content.categoryIdentifier = "CPJReminderCategory"
 
         return content
@@ -153,21 +156,29 @@ class NotificationManager: NSObject {
     }
     
     @available(iOS 10.0, *)
-    private class func calendarNotificationTrigger(_ date:Date, _ repeatDate:Repeats) -> UNCalendarNotificationTrigger {
+    private class func calendarNotificationTrigger(_ notificationType:NotificationType, _ date:Date, _ repeatDate:Repeats) -> UNCalendarNotificationTrigger {
        
         print("print the date when show the popup is \(date)")
+        
         var repeatBool:Bool = false
         var triggerDate :DateComponents? = nil
+        var updateDate = date
+        
+        switch notificationType {
+        case .TwoWeekReminderType: updateDate = updateDate + 2.week
+        case .SlideShowWillExpiredType: updateDate = updateDate + 2.day - 3.hour
+        default: break
+        }
         
         if repeatDate != .None {
             repeatBool = true
             switch repeatDate {
-            case .Minutely: triggerDate = Calendar.current.dateComponents([.second], from: date)
-            case .Hourly: triggerDate = Calendar.current.dateComponents([.minute,.second], from: date)
-            case .Daily: triggerDate = Calendar.current.dateComponents([.hour,.minute,.second], from: date)
-            case .Weekly: triggerDate = Calendar.current.dateComponents([.day,.hour,.minute,.second], from: date)
-            case .Monthly: triggerDate = Calendar.current.dateComponents([.weekday,.day,.hour,.minute,.second], from: date)
-            case .Yearly: triggerDate = Calendar.current.dateComponents([.month,.weekday, .day,.hour,.minute,.second], from: date)
+            case .Minutely: triggerDate = Calendar.current.dateComponents([.second], from: updateDate)
+            case .Hourly: triggerDate = Calendar.current.dateComponents([.minute,.second], from: updateDate)
+            case .Daily: triggerDate = Calendar.current.dateComponents([.hour,.minute,.second], from: updateDate)
+            case .Weekly: triggerDate = Calendar.current.dateComponents([.day,.hour,.minute,.second], from: updateDate)
+            case .Monthly: triggerDate = Calendar.current.dateComponents([.weekday,.day,.hour,.minute,.second], from: updateDate)
+            case .Yearly: triggerDate = Calendar.current.dateComponents([.month,.weekday, .day,.hour,.minute,.second], from: updateDate)
             default: break
             }
         }
