@@ -5,6 +5,7 @@ branches:
   only:
     - master
 env:
+ global:
   - IOS_VERSION="11.0" DEVICE_NAME="iPhone 7"
   - WORKSPACE=LocalNotifications_Over_iOS10.xcworkspace
   - SCHEME="LocalNotifications_Over_iOS10"
