@@ -16,9 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
-        if #available(iOS 10.0, *) {
-            UNUserNotificationCenter.current().delegate = NotificationManager.sharedInstance
-        }
+         NotificationManager.sharedInstance()
 
         return true
     }

@@ -9,19 +9,20 @@
 import Foundation
 import UserNotifications
 
-enum NotificationType : String {
+public enum NotificationType : String {
     case noneType = "NoneType"
     case eventScheduleType = "EventScheduleType"
     case twoWeekReminderType = "TwoWeekReminderType"
     case slideShowWillExpiredType = "SlideShowWillExpiredType"
 }
 
-enum Repeats: String {
+public enum Repeats: String {
     case none, minutely, hourly, daily, weekly, monthly, yearly
 }
 
-class NotificationObject {
-        var notification: NotificationType
+@objc public class NotificationObject : NSObject {
+
+    var notification: NotificationType
     var id: String
     var title: String
     var subtitle: String
@@ -30,8 +31,10 @@ class NotificationObject {
     var repeats : Repeats
     var date:Date
     var userInfo: [AnyHashable: Any] = [:]
+
     var attachment : Array<Any>?
-    init(notification: NotificationType, id: String, title: String, subtitle: String, body: String, badgeCount: NSNumber?, repeats : Repeats, date:Date, userInfo: [AnyHashable: Any] = [:]) {
+
+    public init(notification: NotificationType, id: String, title: String, subtitle: String, body: String, badgeCount: NSNumber?, repeats : Repeats, date:Date, userInfo: [AnyHashable: Any] = [:]) {
         self.notification = notification
         self.id = notification.rawValue + id
         self.title = title
@@ -41,12 +44,15 @@ class NotificationObject {
         self.repeats = repeats
         self.date = date
         self.userInfo = userInfo
+        super.init()
     }
+
     @available(iOS 10.0, *)
-    func addAttachment(_ urlPathFile:String) {
+    public func addAttachment(_ urlPathFile:String) {
         let attachmentURL = NSURL.fileURL(withPath: urlPathFile)
         if let attachment = try? UNNotificationAttachment(identifier: "attachment", url: attachmentURL, options: nil) {
             self.attachment?.append(attachment)
         }
     }
+
 }

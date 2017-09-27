@@ -12,18 +12,38 @@ import CoreLocation
 import UIKit
 import SwiftDate
 
-class NotificationManager: NSObject {
-    static let sharedInstance = NotificationManager()
+@objc public class NotificationManager: NSObject {
+
+    public static let _singletonInstance = NotificationManager()
+
+    public class func sharedInstance() -> NotificationManager {
+        if #available(iOS 10.0, *) {
+            if  UNUserNotificationCenter.current().delegate ==  nil {
+                UNUserNotificationCenter.current().delegate = NotificationManager._singletonInstance
+            }
+        } else {
+            // Fallback on earlier versions
+        }
+        return NotificationManager._singletonInstance
+    }
+
+    private override init() {
+        //This prevents others from using the default '()' initializer for this class.
+    }
+
     // MARK: Public
-    class func scheduleNotification(notificationObj notificationObject:NotificationObject) {
+
+    public class func scheduleNotification(notificationObj notificationObject:NotificationObject) {
+
         if #available(iOS 10.0, *) {
             scheduleUNUserNotification(notificationObj:notificationObject)
         } else {
             scheduleUILocalNotification(body: notificationObject.body)
         }
     }
+
     @available(iOS 10.0, *)
-    class func requestAuthorization(completion: ((_ granted: Bool) -> Void)? = nil) {
+    public class func requestAuthorization(completion: ((_ granted: Bool)->Void)? = nil) {
         let center = UNUserNotificationCenter.current()
         center.requestAuthorization(options: [.badge, .alert, .sound]) { (granted, _) in
             if granted {
@@ -41,36 +61,43 @@ class NotificationManager: NSObject {
             }
         }
     }
+
     @available(iOS 10.0, *)
-    class func pending(completion: @escaping (_ pendingCount: [UNNotificationRequest]) -> Void) {
+    public class func pending(completion: @escaping (_ pendingCount: [UNNotificationRequest])->Void) {
         UNUserNotificationCenter.current().getPendingNotificationRequests { requests in
             completion(requests)
         }
     }
+
     @available(iOS 10.0, *)
-    class func delivered(completion: @escaping (_ deliveredCount: [UNNotification]) -> Void) {
+    public class func delivered(completion: @escaping (_ deliveredCount: [UNNotification])->Void) {
         UNUserNotificationCenter.current().getDeliveredNotifications { notifications in
             completion(notifications)
         }
     }
+
     @available(iOS 10.0, *)
-    class func removePending(withIdentifiers identifiers: [String]) {
+    public class func removePending(withIdentifiers identifiers: [String]) {
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: identifiers)
     }
+
     @available(iOS 10.0, *)
-    class func removeAllPending() {
+    public class func removeAllPending() {
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
     }
+
     @available(iOS 10.0, *)
-    class func removeDelivery(withIdentifiers identifiers: [String]) {
+    public class func removeDelivery(withIdentifiers identifiers: [String]) {
         UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: identifiers)
     }
+
     @available(iOS 10.0, *)
-    class func removeAlldelivery() {
+    public class func removeAlldelivery() {
         UNUserNotificationCenter.current().removeAllDeliveredNotifications()
     }
+
     @available(iOS 10.0, *)
-    class func checkStatus() {
+    public class func checkStatus() {
     }
 
     // MARK: Private
@@ -80,20 +107,21 @@ class NotificationManager: NSObject {
         requestAuthorization { _ in
             let content = createNotificationContent(notificationObj: notificationObj)
             let trigger = calendarNotificationTrigger(notificationObj.notification, notificationObj.date,notificationObj.repeats)
-    /*
-            // Swift
-            let snoozeAction = UNNotificationAction(identifier: "Snooze",
-                                                    title: "Snooze", options: [])
-            let deleteAction = UNNotificationAction(identifier: "CPJDeleteAction",
-                                                    title: "Delete", options: [.destructive])
-            // Swift
-            let category = UNNotificationCategory(identifier: "CPJReminderCategory",
-                                                  actions: [snoozeAction,deleteAction],
-                                                  intentIdentifiers: [], options: [])
-            
-            UNUserNotificationCenter.current().setNotificationCategories([category])
-   */
+            /*
+             // Swift
+             let snoozeAction = UNNotificationAction(identifier: "Snooze",
+             title: "Snooze", options: [])
+             let deleteAction = UNNotificationAction(identifier: "CPJDeleteAction",
+             title: "Delete", options: [.destructive])
+             // Swift
+             let category = UNNotificationCategory(identifier: "CPJReminderCategory",
+             actions: [snoozeAction,deleteAction],
+             intentIdentifiers: [], options: [])
+             
+             UNUserNotificationCenter.current().setNotificationCategories([category])
+             */
             let request = UNNotificationRequest(identifier: notificationObj.id, content: content, trigger: trigger)
+
             UNUserNotificationCenter.current().add(request) { error in
                 // Use this block to determine if the notification request was added successfully.
                 if error == nil {
@@ -104,6 +132,7 @@ class NotificationManager: NSObject {
             }
         }
     }
+
     @available(iOS 10.0, *)
     private class func createNotificationContent(notificationObj:NotificationObject) -> UNNotificationContent {
         let content = UNMutableNotificationContent()
@@ -116,6 +145,7 @@ class NotificationManager: NSObject {
         if let attachementFiles =  notificationObj.attachment {
             content.attachments =  attachementFiles as! [UNNotificationAttachment]
         }
+
         //content.categoryIdentifier = "CPJReminderCategory"
 
         return content
@@ -137,6 +167,7 @@ class NotificationManager: NSObject {
     private class func createTimeIntervalNotificationTrigger() -> UNTimeIntervalNotificationTrigger {
         return UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)
     }
+
     @available(iOS 10.0, *)
     private class func calendarNotificationTrigger(_ notificationType:NotificationType, _ date:Date, _ repeatDate:Repeats) -> UNCalendarNotificationTrigger {
 
@@ -190,12 +221,12 @@ extension String {
 extension NotificationManager: UNUserNotificationCenterDelegate {
 
     @available(iOS 10.0, *)
-    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+    public func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         NSLog("User Notification Center did receive notification response")
     }
 
     @available(iOS 10.0, *)
-    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+    public func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         NSLog("User Notification Center will present notification")
         //show popup on foreground in app
         completionHandler(.alert)
