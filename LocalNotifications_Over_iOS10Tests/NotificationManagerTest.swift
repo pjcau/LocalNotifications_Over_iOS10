@@ -24,7 +24,7 @@ class NotificationManagerTest: XCTestCase {
 
     func testNOtificationManagerInit() {
         // This is an example of a functional test case.
-        let manager =  NotificationManager()
+        let manager =  NotificationManager.sharedInstance()
         XCTAssertNotNil(manager)
 
     }

@@ -43,7 +43,7 @@ import SwiftDate
     }
 
     @available(iOS 10.0, *)
-    public class func requestAuthorization(completion: ((_ granted: Bool)->Void)? = nil) {
+    public class func requestAuthorization(completion: ((_ granted: Bool) -> Void)? = nil) {
         let center = UNUserNotificationCenter.current()
         center.requestAuthorization(options: [.badge, .alert, .sound]) { (granted, _) in
             if granted {
@@ -63,14 +63,14 @@ import SwiftDate
     }
 
     @available(iOS 10.0, *)
-    public class func pending(completion: @escaping (_ pendingCount: [UNNotificationRequest])->Void) {
+    public class func pending(completion: @escaping (_ pendingCount: [UNNotificationRequest]) -> Void) {
         UNUserNotificationCenter.current().getPendingNotificationRequests { requests in
             completion(requests)
         }
     }
 
     @available(iOS 10.0, *)
-    public class func delivered(completion: @escaping (_ deliveredCount: [UNNotification])->Void) {
+    public class func delivered(completion: @escaping (_ deliveredCount: [UNNotification]) -> Void) {
         UNUserNotificationCenter.current().getDeliveredNotifications { notifications in
             completion(notifications)
         }
