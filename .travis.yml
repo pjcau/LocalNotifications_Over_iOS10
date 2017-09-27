@@ -6,8 +6,12 @@ branches:
     - master
 env:
   - IOS_VERSION="11.0" DEVICE_NAME="iPhone 7"
+  - WORKSPACE=LocalNotifications_Over_iOS10.xcworkspace
+  - SCHEME="LocalNotifications_Over_iOS10"
 before_install:
     - gem install xcpretty -N
     - pod update
 script:
-    travis_retry xcodebuild build-for-testing -workspace LocalNotifications_Over_iOS10.xcworkspace -scheme LocalNotifications_Over_iOS10 -sdk iphonesimulator11.0 -destination "platform=iOS Simulator,name=$DEVICE_NAME,OS=$IOS_VERSION" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | xcpretty -c
+    travis_retry xcodebuild build-for-testing -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk iphonesimulator11.0 -destination "platform=iOS Simulator,name=$DEVICE_NAME,OS=$IOS_VERSION" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | xcpretty -c
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
