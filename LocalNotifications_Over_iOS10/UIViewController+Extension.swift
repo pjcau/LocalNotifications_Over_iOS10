@@ -6,11 +6,9 @@
 //  Copyright © 2017 Cau Pierre Jonny . All rights reserved.
 //
 
-
 import UIKit
 
 extension UIViewController {
-    
     func showAlert(message: String) {
         let alert = UIAlertController(title: "Notifications", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))

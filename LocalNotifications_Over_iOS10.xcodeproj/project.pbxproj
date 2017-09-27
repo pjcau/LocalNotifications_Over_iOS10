@@ -155,6 +155,7 @@
 				53353AC51D89C7AC0069804D /* Resources */,
 				7700887776EC155B0483BA88 /* [CP] Embed Pods Frameworks */,
 				486354B88061951A68D97AAC /* [CP] Copy Pods Resources */,
+				5FB0B0221F7BB3930070B336 /* SwiftLint Script */,
 			);
 			buildRules = (
 			);
@@ -261,6 +262,20 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LocalNotifications_Over_iOS10/Pods-LocalNotifications_Over_iOS10-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		5FB0B0221F7BB3930070B336 /* SwiftLint Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "SwiftLint Script";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint autocorrect\necho \"swiftlint autocorrect\"\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
 		7700887776EC155B0483BA88 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;

@@ -10,19 +10,18 @@ import Foundation
 import UserNotifications
 
 enum NotificationType : String {
-    case NoneType = "NoneType"
-    case EventScheduleType = "EventScheduleType"
-    case TwoWeekReminderType = "TwoWeekReminderType"
-    case SlideShowWillExpiredType = "SlideShowWillExpiredType"
+    case noneType = "NoneType"
+    case eventScheduleType = "EventScheduleType"
+    case twoWeekReminderType = "TwoWeekReminderType"
+    case slideShowWillExpiredType = "SlideShowWillExpiredType"
 }
 
 enum Repeats: String {
-    case None, Minutely, Hourly, Daily, Weekly, Monthly, Yearly
+    case none, minutely, hourly, daily, weekly, monthly, yearly
 }
 
 class NotificationObject {
-    
-    var notification: NotificationType
+        var notification: NotificationType
     var id: String
     var title: String
     var subtitle: String
@@ -31,9 +30,7 @@ class NotificationObject {
     var repeats : Repeats
     var date:Date
     var userInfo: [AnyHashable: Any] = [:]
-    
     var attachment : Array<Any>?
-    
     init(notification: NotificationType, id: String, title: String, subtitle: String, body: String, badgeCount: NSNumber?, repeats : Repeats, date:Date, userInfo: [AnyHashable: Any] = [:]) {
         self.notification = notification
         self.id = notification.rawValue + id
@@ -45,8 +42,6 @@ class NotificationObject {
         self.date = date
         self.userInfo = userInfo
     }
-    
-   
     @available(iOS 10.0, *)
     func addAttachment(_ urlPathFile:String) {
         let attachmentURL = NSURL.fileURL(withPath: urlPathFile)
@@ -54,5 +49,4 @@ class NotificationObject {
             self.attachment?.append(attachment)
         }
     }
-    
 }

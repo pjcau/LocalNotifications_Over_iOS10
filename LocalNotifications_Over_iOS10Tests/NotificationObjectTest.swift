@@ -11,22 +11,22 @@ import XCTest
 @testable import LocalNotifications_Over_iOS10
 
 class NotificationObjectTest: XCTestCase {
-    
+
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        
+
     }
-    
+
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
-    
+
     func testNotificationObject() {
         // This is an example of a functional test case.
-        let notificationObj = NotificationObject.init(notification: .EventScheduleType, id: "alert", title: "iOS Presentation", subtitle: "Friday September 16th", body: "Remember to finalize your presentation for tomorrow!", badgeCount: nil, repeats: .Minutely, date: Date(), userInfo: [:])
-        
+        let notificationObj = NotificationObject.init(notification: .eventScheduleType, id: "alert", title: "iOS Presentation", subtitle: "Friday September 16th", body: "Remember to finalize your presentation for tomorrow!", badgeCount: nil, repeats: .minutely, date: Date(), userInfo: [:])
+
         XCTAssertEqual("iOS Presentation", notificationObj.title)
         XCTAssertEqual("EventScheduleType"+"alert", notificationObj.id)
         XCTAssertEqual("Friday September 16th", notificationObj.subtitle)
@@ -37,5 +37,5 @@ class NotificationObjectTest: XCTestCase {
 
         XCTAssertNil(notificationObj.badgeCount)
     }
-    
+
 }
