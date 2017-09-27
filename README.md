@@ -5,8 +5,8 @@
 [![License](https://img.shields.io/cocoapods/l/LocalNotifications_Over_iOS10.svg?style=flat)](http://cocoadocs.org/docsets/LocalNotifications_Over_iOS10) 
 [![Swift 4](https://img.shields.io/badge/Swift-4-orange.svg?style=flat)](https://swift.org)
 [![Platform](https://img.shields.io/cocoapods/p/LocalNotifications_Over_iOS10.svg?style=flat)](http://cocoadocs.org/docsets/LocalNotifications_Over_iOS10)
-
-
+[![Download](https://img.shields.io/cocoapods/dt/LocalNotifications_Over_iOS10.svg?style=flat)](http://cocoadocs.org/docsets/LocalNotifications_Over_iOS10)
+[![Release](https://img.shields.io/github/release/pjcau/LocalNotifications_Over_iOS10.svg?style=flat)](http://cocoadocs.org/docsets/LocalNotifications_Over_iOS10)
 
 This's a Manager for the Local Notification from iOS10 to now. So now it's also the pod.
 
