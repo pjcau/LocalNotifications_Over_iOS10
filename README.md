@@ -6,5 +6,5 @@
 [![Platform](https://img.shields.io/cocoapods/p/LocalNotifications_Over_iOS10.svg?style=flat)](http://cocoadocs.org/docsets/LocalNotifications_Over_iOS10)
 
 
-Example to manage the Local Notification from iOS10
+This's a Manager for the Local Notification from iOS10 to now. So now it's also the pod.
 
