@@ -17,7 +17,7 @@ env:
 before_install:
     - gem install xcpretty -N
     - pod update
-    
+ 
 jobs:
   include:
     - stage: Swiflint
@@ -26,7 +26,7 @@ jobs:
  
     - stage: Unit Test
       script:
-         travis_retry xcodebuild build-for-testing -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | xcpretty -c
+         - travis_retry xcodebuild build-for-testing -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | xcpretty -c
  
- after_success:
+after_success:
   - bash <(curl -s https://codecov.io/bash)
