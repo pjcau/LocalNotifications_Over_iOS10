@@ -11,9 +11,8 @@ env:
  global:
  - WORKSPACE=LocalNotifications_Over_iOS10.xcworkspace
  - SCHEME=LocalNotifications_Over_iOS10
- matrix:
-   - DESTINATION="platform=iOS Simulator,OS=10.0,name=iPhone 6"           SDK="iphonesimulator10.0"   
-   - DESTINATION="platform=iOS Simulator,OS=11.0,name=iPhone 6"           SDK="iphonesimulator11.0" 
+ - DESTINATION="platform=iOS Simulator,OS=11.0,name=iPhone 6"     
+ - SDK="iphonesimulator11.0" 
    
 before_install:
     - gem install xcpretty -N
