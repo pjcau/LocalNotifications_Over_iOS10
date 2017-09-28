@@ -11,7 +11,11 @@ env:
  global:
  - WORKSPACE=LocalNotifications_Over_iOS10.xcworkspace
  - SCHEME=LocalNotifications_Over_iOS10
- - DESTINATION="platform=iOS Simulator,OS=11.0,name=iPhone 6"     
+ - IPHONE6="iPhone 6"     
+ - IPHONE7="iPhone 7"     
+ - DESTINATION1="platform=iOS Simulator,OS=11.0,name=$IPHONE6" 
+ - DESTINATION2="platform=iOS Simulator,OS=11.0,name=$IPHONE7"     
+
  - SDK="iphonesimulator11.0" 
    
 before_install:
@@ -24,9 +28,13 @@ jobs:
       script:
         - ./Pods/SwiftLint/swiftlint
  
-    - stage: Unit Test
+    - stage: Unit Test iPhone 6 ios11
       script:
-         - travis_retry xcodebuild build-for-testing -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | xcpretty -c
+         - travis_retry xcodebuild build-for-testing -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION1" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | xcpretty -c
  
+    - stage: Unit Test iPhone 7 ios11
+      script:
+         - travis_retry xcodebuild build-for-testing -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION2" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | xcpretty -c
+   
 after_success:
   - bash <(curl -s https://codecov.io/bash)
