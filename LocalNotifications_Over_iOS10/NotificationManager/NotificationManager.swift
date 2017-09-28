@@ -14,17 +14,17 @@ import SwiftDate
 
 @objc public class NotificationManager: NSObject {
 
-    public static let _singletonInstance = NotificationManager()
+    public static let singletonInstance = NotificationManager()
 
     @objc public class func sharedInstance() -> NotificationManager {
         if #available(iOS 10.0, *) {
             if  UNUserNotificationCenter.current().delegate ==  nil {
-                UNUserNotificationCenter.current().delegate = NotificationManager._singletonInstance
+                UNUserNotificationCenter.current().delegate = NotificationManager.singletonInstance
             }
         } else {
             // Fallback on earlier versions
         }
-        return NotificationManager._singletonInstance
+        return NotificationManager.singletonInstance
     }
 
     private override init() {
