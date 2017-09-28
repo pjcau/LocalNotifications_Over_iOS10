@@ -30,11 +30,11 @@ jobs:
  
     - stage: Unit Test iPhone 6 ios11
       script:
-         - travis_retry xcodebuild build-for-testing -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION1" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | xcpretty -c
+         - travis_retry xcodebuild build-for-testing -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION1" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | xcpretty -s --report html
  
     - stage: Unit Test iPhone 7 ios11
       script:
-         - travis_retry xcodebuild build-for-testing -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION2" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | xcpretty -c
+         - travis_retry xcodebuild build-for-testing -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION2" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | xcpretty -s --report html
    
 after_success:
   - bash <(curl -s https://codecov.io/bash)
