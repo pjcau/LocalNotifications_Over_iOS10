@@ -16,7 +16,7 @@ import SwiftDate
 
     public static let _singletonInstance = NotificationManager()
 
-    public class func sharedInstance() -> NotificationManager {
+    @objc public class func sharedInstance() -> NotificationManager {
         if #available(iOS 10.0, *) {
             if  UNUserNotificationCenter.current().delegate ==  nil {
                 UNUserNotificationCenter.current().delegate = NotificationManager._singletonInstance
@@ -33,7 +33,7 @@ import SwiftDate
 
     // MARK: Public
 
-    public class func scheduleNotification(notificationObj notificationObject:NotificationObject) {
+    @objc public class func scheduleNotification(notificationObj notificationObject:NotificationObject) {
 
         if #available(iOS 10.0, *) {
             scheduleUNUserNotification(notificationObj:notificationObject)
@@ -43,7 +43,7 @@ import SwiftDate
     }
 
     @available(iOS 10.0, *)
-    public class func requestAuthorization(completion: ((_ granted: Bool) -> Void)? = nil) {
+    @objc public class func requestAuthorization(completion: ((_ granted: Bool) -> Void)? = nil) {
         let center = UNUserNotificationCenter.current()
         center.requestAuthorization(options: [.badge, .alert, .sound]) { (granted, _) in
             if granted {
@@ -63,41 +63,41 @@ import SwiftDate
     }
 
     @available(iOS 10.0, *)
-    public class func pending(completion: @escaping (_ pendingCount: [UNNotificationRequest]) -> Void) {
+    @objc public class func pending(completion: @escaping (_ pendingCount: [UNNotificationRequest]) -> Void) {
         UNUserNotificationCenter.current().getPendingNotificationRequests { requests in
             completion(requests)
         }
     }
 
     @available(iOS 10.0, *)
-    public class func delivered(completion: @escaping (_ deliveredCount: [UNNotification]) -> Void) {
+    @objc public class func delivered(completion: @escaping (_ deliveredCount: [UNNotification]) -> Void) {
         UNUserNotificationCenter.current().getDeliveredNotifications { notifications in
             completion(notifications)
         }
     }
 
     @available(iOS 10.0, *)
-    public class func removePending(withIdentifiers identifiers: [String]) {
+    @objc public class func removePending(withIdentifiers identifiers: [String]) {
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: identifiers)
     }
 
     @available(iOS 10.0, *)
-    public class func removeAllPending() {
+    @objc public class func removeAllPending() {
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
     }
 
     @available(iOS 10.0, *)
-    public class func removeDelivery(withIdentifiers identifiers: [String]) {
+    @objc public class func removeDelivery(withIdentifiers identifiers: [String]) {
         UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: identifiers)
     }
 
     @available(iOS 10.0, *)
-    public class func removeAlldelivery() {
+    @objc public class func removeAlldelivery() {
         UNUserNotificationCenter.current().removeAllDeliveredNotifications()
     }
 
     @available(iOS 10.0, *)
-    public class func checkStatus() {
+    @objc public class func checkStatus() {
     }
 
     // MARK: Private

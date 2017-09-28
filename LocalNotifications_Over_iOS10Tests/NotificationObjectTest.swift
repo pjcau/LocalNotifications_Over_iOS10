@@ -28,7 +28,7 @@ class NotificationObjectTest: XCTestCase {
         let notificationObj = NotificationObject.init(notification: .eventScheduleType, id: "alert", title: "iOS Presentation", subtitle: "Friday September 16th", body: "Remember to finalize your presentation for tomorrow!", badgeCount: nil, repeats: .minutely, date: Date(), userInfo: [:])
 
         XCTAssertEqual("iOS Presentation", notificationObj.title)
-        XCTAssertEqual("EventScheduleType"+"alert", notificationObj.id)
+        XCTAssertEqual("eventScheduleType"+"alert", notificationObj.id)
         XCTAssertEqual("Friday September 16th", notificationObj.subtitle)
         XCTAssertEqual("Remember to finalize your presentation for tomorrow!", notificationObj.body)
 

@@ -9,14 +9,11 @@
 import Foundation
 import UserNotifications
 
-public enum NotificationType : String {
-    case noneType = "NoneType"
-    case eventScheduleType = "EventScheduleType"
-    case twoWeekReminderType = "TwoWeekReminderType"
-    case slideShowWillExpiredType = "SlideShowWillExpiredType"
+@objc public enum NotificationType : Int {
+    case noneType,eventScheduleType,twoWeekReminderType,slideShowWillExpiredType
 }
 
-public enum Repeats: String {
+@objc public enum Repeats: Int {
     case none, minutely, hourly, daily, weekly, monthly, yearly
 }
 
@@ -34,9 +31,18 @@ public enum Repeats: String {
 
     var attachment : Array<Any>?
 
-    public init(notification: NotificationType, id: String, title: String, subtitle: String, body: String, badgeCount: NSNumber?, repeats : Repeats, date:Date, userInfo: [AnyHashable: Any] = [:]) {
+    @objc public init(notification: NotificationType, id: String, title: String, subtitle: String, body: String, badgeCount: NSNumber?, repeats : Repeats, date:Date, userInfo: [AnyHashable: Any] = [:]) {
         self.notification = notification
-        self.id = notification.rawValue + id
+        switch notification {
+        case .noneType:
+            self.id = "noneType" + id
+        case .eventScheduleType:
+            self.id = "eventScheduleType" + id
+        case .twoWeekReminderType:
+            self.id = "twoWeekReminderType" + id
+        case .slideShowWillExpiredType:
+            self.id = "slideShowWillExpiredType" + id
+        }
         self.title = title
         self.subtitle = subtitle
         self.body = body
@@ -48,7 +54,7 @@ public enum Repeats: String {
     }
 
     @available(iOS 10.0, *)
-    public func addAttachment(_ urlPathFile:String) {
+    @objc public func addAttachment(_ urlPathFile:String) {
         let attachmentURL = NSURL.fileURL(withPath: urlPathFile)
         if let attachment = try? UNNotificationAttachment(identifier: "attachment", url: attachmentURL, options: nil) {
             self.attachment?.append(attachment)
