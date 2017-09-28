@@ -22,7 +22,7 @@ jobs:
   include:
     - stage: Swiflint
       script:
-        - ./Pods/SwiftLint/swiftlint --reporter junit
+        - ./Pods/SwiftLint/swiftlint
  
     - stage: Unit Test
       script:
