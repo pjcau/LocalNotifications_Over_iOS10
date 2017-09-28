@@ -9,13 +9,32 @@ branches:
     - master
 env:
  global:
-  - IOS_VERSION="11.0" DEVICE_NAME="iPhone 7"
-  - WORKSPACE=LocalNotifications_Over_iOS10.xcworkspace
-  - SCHEME="LocalNotifications_Over_iOS10"
+ - WORKSPACE=LocalNotifications_Over_iOS10.xcworkspace
+ - SCHEME=LocalNotifications_Over_iOS10
+ - IPHONE6="iPhone 6"     
+ - IPHONE7="iPhone 7"     
+ - DESTINATION1="platform=iOS Simulator,OS=11.0,name=$IPHONE6" 
+ - DESTINATION2="platform=iOS Simulator,OS=11.0,name=$IPHONE7"     
+
+ - SDK="iphonesimulator11.0" 
+   
 before_install:
     - gem install xcpretty -N
     - pod update
-script:
-    travis_retry xcodebuild build-for-testing -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk iphonesimulator11.0 -destination "platform=iOS Simulator,name=$DEVICE_NAME,OS=$IOS_VERSION" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | xcpretty -c
+ 
+jobs:
+  include:
+    - stage: Swiflint
+      script:
+        - ./Pods/SwiftLint/swiftlint
+ 
+    - stage: Unit Test iPhone 6 ios11
+      script:
+         - travis_retry xcodebuild build-for-testing -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION1" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | xcpretty -c
+ 
+    - stage: Unit Test iPhone 7 ios11
+      script:
+         - travis_retry xcodebuild build-for-testing -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION2" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | xcpretty -c
+   
 after_success:
   - bash <(curl -s https://codecov.io/bash)
