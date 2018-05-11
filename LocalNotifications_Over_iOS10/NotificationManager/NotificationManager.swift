@@ -65,6 +65,14 @@ import SwiftDate
     }
 
     @available(iOS 10.0, *)
+    @objc public class func getNotificationSettings(completion: ((_ value: UNAuthorizationStatus) -> Void)? = nil) {
+        let center = UNUserNotificationCenter.current()
+        center.getNotificationSettings { (settings) in
+            completion?(settings.authorizationStatus)
+        }
+    }
+
+    @available(iOS 10.0, *)
     @objc public class func pending(completion: @escaping (_ pendingCount: [UNNotificationRequest]) -> Void) {
         UNUserNotificationCenter.current().getPendingNotificationRequests { requests in
             completion(requests)
