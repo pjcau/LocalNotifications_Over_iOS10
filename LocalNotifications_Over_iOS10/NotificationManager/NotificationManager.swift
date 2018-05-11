@@ -18,7 +18,7 @@ import SwiftDate
         return  NotificationManager()
     }()
 
-    @objc public class func shared() -> NotificationManager {
+    @objc public static func shared() -> NotificationManager {
         if #available(iOS 10.0, *) {
             if  UNUserNotificationCenter.current().delegate ==  nil {
                 UNUserNotificationCenter.current().delegate = NotificationManager.singletonInstance
@@ -35,17 +35,17 @@ import SwiftDate
 
     // MARK: Public
 
-    @objc public class func scheduleNotification(notificationObj notificationObject:NotificationObject) {
+    @objc public func scheduleNotification(notificationObj notificationObject:NotificationObject) {
 
         if #available(iOS 10.0, *) {
-            scheduleUNUserNotification(notificationObj:notificationObject)
+            NotificationManager.shared().scheduleUNUserNotification(notificationObj:notificationObject)
         } else {
-            scheduleUILocalNotification(body: notificationObject.body)
+            NotificationManager.shared().scheduleUILocalNotification(body: notificationObject.body)
         }
     }
 
     @available(iOS 10.0, *)
-    @objc public class func requestAuthorization(completion: ((_ granted: Bool) -> Void)? = nil) {
+    @objc public func requestAuthorization(completion: ((_ granted: Bool) -> Void)? = nil) {
         let center = UNUserNotificationCenter.current()
         center.requestAuthorization(options: [.badge, .alert, .sound]) { (granted, _) in
             if granted {
@@ -65,7 +65,7 @@ import SwiftDate
     }
 
     @available(iOS 10.0, *)
-    @objc public class func getNotificationSettings(completion: ((_ value: UNAuthorizationStatus) -> Void)? = nil) {
+    @objc public func getNotificationSettings(completion: ((_ value: UNAuthorizationStatus) -> Void)? = nil) {
         let center = UNUserNotificationCenter.current()
         center.getNotificationSettings { (settings) in
             completion?(settings.authorizationStatus)
@@ -73,51 +73,51 @@ import SwiftDate
     }
 
     @available(iOS 10.0, *)
-    @objc public class func pending(completion: @escaping (_ pendingCount: [UNNotificationRequest]) -> Void) {
+    @objc public func pending(completion: @escaping (_ pendingCount: [UNNotificationRequest]) -> Void) {
         UNUserNotificationCenter.current().getPendingNotificationRequests { requests in
             completion(requests)
         }
     }
 
     @available(iOS 10.0, *)
-    @objc public class func delivered(completion: @escaping (_ deliveredCount: [UNNotification]) -> Void) {
+    @objc public func delivered(completion: @escaping (_ deliveredCount: [UNNotification]) -> Void) {
         UNUserNotificationCenter.current().getDeliveredNotifications { notifications in
             completion(notifications)
         }
     }
 
     @available(iOS 10.0, *)
-    @objc public class func removePending(withIdentifiers identifiers: [String]) {
+    @objc public func removePending(withIdentifiers identifiers: [String]) {
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: identifiers)
     }
 
     @available(iOS 10.0, *)
-    @objc public class func removeAllPending() {
+    @objc public func removeAllPending() {
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
     }
 
     @available(iOS 10.0, *)
-    @objc public class func removeDelivery(withIdentifiers identifiers: [String]) {
+    @objc public func removeDelivery(withIdentifiers identifiers: [String]) {
         UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: identifiers)
     }
 
     @available(iOS 10.0, *)
-    @objc public class func removeAlldelivery() {
+    @objc public func removeAlldelivery() {
         UNUserNotificationCenter.current().removeAllDeliveredNotifications()
     }
 
     @available(iOS 10.0, *)
-    @objc public class func checkStatus() {
+    @objc public func checkStatus() {
     }
 
     // MARK: Private
 
     @available(iOS 10.0, *)
-    private class func scheduleUNUserNotification(notificationObj:NotificationObject) {
+    private func scheduleUNUserNotification(notificationObj:NotificationObject) {
         requestAuthorization { _ in
-            let content = createNotificationContent(notificationObj: notificationObj)
+            let content = NotificationManager.shared().createNotificationContent(notificationObj: notificationObj)
 
-            let trigger = calendarNotificationTrigger(notificationObj.notification, notificationObj.date,notificationObj.repeats)
+            let trigger = NotificationManager.shared().calendarNotificationTrigger(notificationObj.notification, notificationObj.date,notificationObj.repeats)
 
             let request = UNNotificationRequest(identifier: notificationObj.id, content: content, trigger: trigger)
 
@@ -133,7 +133,7 @@ import SwiftDate
     }
 
     @available(iOS 10.0, *)
-    private class func createNotificationContent(notificationObj:NotificationObject) -> UNNotificationContent {
+    private func createNotificationContent(notificationObj:NotificationObject) -> UNNotificationContent {
         let content = UNMutableNotificationContent()
         content.title = notificationObj.title
         content.subtitle = notificationObj.subtitle
@@ -152,7 +152,7 @@ import SwiftDate
 
     // MARK: iOS 9 UILocalNotification support
 
-    private class func scheduleUILocalNotification(body: String) {
+    private func scheduleUILocalNotification(body: String) {
         let localNotification = UILocalNotification()
         localNotification.fireDate = Date().addingTimeInterval(1)
         localNotification.alertBody = body
@@ -163,12 +163,12 @@ import SwiftDate
     // MARK: Sample triggers
 
     @available(iOS 10.0, *)
-    private class func createTimeIntervalNotificationTrigger() -> UNTimeIntervalNotificationTrigger {
+    private func createTimeIntervalNotificationTrigger() -> UNTimeIntervalNotificationTrigger {
         return UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)
     }
 
     @available(iOS 10.0, *)
-    private class func calendarNotificationTrigger(_ notificationType:NotificationType, _ date:Date, _ repeatDate:Repeats) -> UNCalendarNotificationTrigger? {
+    private func calendarNotificationTrigger(_ notificationType:NotificationType, _ date:Date, _ repeatDate:Repeats) -> UNCalendarNotificationTrigger? {
 
         var repeatBool:Bool = false
         var triggerDate :DateComponents? = nil
@@ -204,7 +204,7 @@ import SwiftDate
     }
 
     @available(iOS 10.0, *)
-    private class func createLocationNotificationTrigger() -> UNLocationNotificationTrigger {
+    private func createLocationNotificationTrigger() -> UNLocationNotificationTrigger {
         let cynnyOfficeRegion = CLCircularRegion(center: CLLocationCoordinate2D(latitude:43.7825, longitude: 11.2594), radius: 10, identifier: "Cynny")
         cynnyOfficeRegion.notifyOnEntry = true
         cynnyOfficeRegion.notifyOnExit = true

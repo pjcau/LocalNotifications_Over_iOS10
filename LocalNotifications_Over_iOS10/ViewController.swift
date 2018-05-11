@@ -15,11 +15,11 @@ class ViewController: UIViewController {
     }
         @IBAction func scheduleNotificationAction(_ sender: AnyObject) {
             let notificationObj = NotificationObject(notification: .eventScheduleType, id: "alert", title: "iOS Presentation", subtitle: "Friday September 16th", body: "Remember to finalize your presentation for tomorrow!", badgeCount: nil, repeats: .minutely, date: Date(), userInfo: [:])
-        NotificationManager.scheduleNotification(notificationObj:notificationObj)
+        NotificationManager.shared().scheduleNotification(notificationObj:notificationObj)
     }
         @IBAction func howManyScheduledAction(_ sender: AnyObject) {
         if #available(iOS 10.0, *) {
-            NotificationManager.pending { [weak self] pending in
+            NotificationManager.shared().pending { [weak self] pending in
                 self?.showAlert(message: "\(pending) pending notifications")
             }
         } else {
@@ -28,7 +28,7 @@ class ViewController: UIViewController {
     }
         @IBAction func howManyDeliveredAction(_ sender: AnyObject) {
         if #available(iOS 10.0, *) {
-            NotificationManager.delivered { [weak self] deliveredCount in
+            NotificationManager.shared().delivered { [weak self] deliveredCount in
                 self?.showAlert(message: "\(deliveredCount) delivered notifications")
             }
         } else {
@@ -37,14 +37,14 @@ class ViewController: UIViewController {
     }
         @IBAction func removeAllPending(_ sender: AnyObject) {
         if #available(iOS 10.0, *) {
-            NotificationManager.removeAllPending()
+            NotificationManager.shared().removeAllPending()
         } else {
             showAlert(message: "Remove all pending notifications are only available in iOS 10")
         }
     }
         @IBAction func removeAllDelivery(_ sender: AnyObject) {
         if #available(iOS 10.0, *) {
-            NotificationManager.removeAlldelivery()
+            NotificationManager.shared().removeAlldelivery()
         } else {
             showAlert(message: "Remove all pending notifications are only available in iOS 10")
         }
