@@ -28,10 +28,12 @@ import UserNotifications
     var repeats : Repeats
     var date:Date
     var userInfo: [AnyHashable: Any] = [:]
+    var media : String?
+    var mediaUrl :String?
 
     var attachment : Array<Any>?
 
-    @objc public init(notification: NotificationType, id: String, title: String, subtitle: String, body: String, badgeCount: NSNumber?, repeats : Repeats, date:Date, userInfo: [AnyHashable: Any] = [:]) {
+    @objc public init(notification: NotificationType, id: String, title: String, subtitle: String, body: String, badgeCount: NSNumber?, repeats : Repeats, date:Date, userInfo: [AnyHashable: Any] = [:], media: String? = nil, mediaUrl : String? = nil) {
         self.notification = notification
         switch notification {
         case .noneType:
@@ -50,6 +52,8 @@ import UserNotifications
         self.repeats = repeats
         self.date = date
         self.userInfo = userInfo
+        self.media = media
+        self.mediaUrl = mediaUrl
         super.init()
     }
 

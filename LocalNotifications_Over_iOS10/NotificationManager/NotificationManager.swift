@@ -65,6 +65,12 @@ import SwiftDate
     }
 
     @available(iOS 10.0, *)
+    @objc public func setupCategories(_ categories: Set<UNNotificationCategory>) {
+        let center = UNUserNotificationCenter.current()
+        center.setNotificationCategories(categories)
+    }
+
+    @available(iOS 10.0, *)
     @objc public func getNotificationSettings(completion: ((_ value: UNAuthorizationStatus) -> Void)? = nil) {
         let center = UNUserNotificationCenter.current()
         center.getNotificationSettings { (settings) in
@@ -110,14 +116,32 @@ import SwiftDate
     @objc public func checkStatus() {
     }
 
+    @available(iOS 10.0, *)
+    @objc public func action(id: String, title: String, options: UNNotificationActionOptions = []) -> UNNotificationAction {
+
+        let action = UNNotificationAction(identifier: id, title: title, options: options)
+
+        return action
+    }
+
+    @available(iOS 10.0, *)
+    @objc public func category(identifier: String, action:[UNNotificationAction],  intentIdentifiers: [String], options: UNNotificationCategoryOptions = []) -> UNNotificationCategory {
+
+        let category = UNNotificationCategory(identifier: identifier, actions: action, intentIdentifiers: intentIdentifiers, options: options)
+
+        return category
+    }
+
     // MARK: Private
 
     @available(iOS 10.0, *)
     private func scheduleUNUserNotification(notificationObj:NotificationObject) {
         requestAuthorization { _ in
-            let content = NotificationManager.shared().createNotificationContent(notificationObj: notificationObj)
+            var content = NotificationManager.shared().createNotificationContent(notificationObj: notificationObj)
 
             let trigger = NotificationManager.shared().calendarNotificationTrigger(notificationObj.notification, notificationObj.date,notificationObj.repeats)
+
+            content =  NotificationManager.shared().customCategory(notificationObj, content)
 
             let request = UNNotificationRequest(identifier: notificationObj.id, content: content, trigger: trigger)
 
@@ -133,7 +157,7 @@ import SwiftDate
     }
 
     @available(iOS 10.0, *)
-    private func createNotificationContent(notificationObj:NotificationObject) -> UNNotificationContent {
+    private func createNotificationContent(notificationObj:NotificationObject) -> UNMutableNotificationContent {
         let content = UNMutableNotificationContent()
         content.title = notificationObj.title
         content.subtitle = notificationObj.subtitle
@@ -144,8 +168,6 @@ import SwiftDate
         if let attachementFiles =  notificationObj.attachment {
             content.attachments =  attachementFiles as! [UNNotificationAttachment]
         }
-
-        //content.categoryIdentifier = "CPJReminderCategory"
 
         return content
     }
@@ -204,6 +226,26 @@ import SwiftDate
     }
 
     @available(iOS 10.0, *)
+    private func customCategory( _ notificationObj:NotificationObject , _ content : UNMutableNotificationContent ) -> UNMutableNotificationContent {
+
+        if let name = notificationObj.mediaUrl, let media = notificationObj.media, let url = UIHelper.saveImage(name: name) {
+            print("url is \(url)")
+
+            let attachment = try? UNNotificationAttachment(identifier: media,
+                                                           url: url,
+                                                           options: [:])
+
+            if let attachment = attachment {
+                content.attachments.removeAll(keepingCapacity: true)
+                content.attachments.append(attachment)
+            }
+            content.categoryIdentifier = media
+
+        }
+        return content
+    }
+
+    @available(iOS 10.0, *)
     private func createLocationNotificationTrigger() -> UNLocationNotificationTrigger {
         let cynnyOfficeRegion = CLCircularRegion(center: CLLocationCoordinate2D(latitude:43.7825, longitude: 11.2594), radius: 10, identifier: "Cynny")
         cynnyOfficeRegion.notifyOnEntry = true
@@ -231,7 +273,7 @@ extension NotificationManager: UNUserNotificationCenterDelegate {
     public func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         NSLog("User Notification Center will present notification")
         //show popup on foreground in app
-        completionHandler(.alert)
+        completionHandler( [.alert, .badge, .sound])
     }
 
 }

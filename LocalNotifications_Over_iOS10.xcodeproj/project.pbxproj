@@ -17,6 +17,8 @@
 		5F11D8D91F7A3D9200A43DF5 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F11D8D51F7A307700A43DF5 /* NotificationManager.swift */; };
 		5F340ABD1F7A73DB00520C30 /* NotificationManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F340ABC1F7A73DB00520C30 /* NotificationManagerTest.swift */; };
 		5F340ABF1F7A73F300520C30 /* NotificationObjectTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F340ABE1F7A73F300520C30 /* NotificationObjectTest.swift */; };
+		5F5B1E9120A636EE00A8B95C /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5B1E9020A636EE00A8B95C /* UIHelper.swift */; };
+		5F5B1E9420A637FA00A8B95C /* AttachmentIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5B1E9320A637FA00A8B95C /* AttachmentIdentifier.swift */; };
 		6F704805F86459ADB92E8BAF /* Pods_LocalNotifications_Over_iOS10.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5848FD45ED2F74325DF0F78 /* Pods_LocalNotifications_Over_iOS10.framework */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +48,8 @@
 		5F340ABC1F7A73DB00520C30 /* NotificationManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManagerTest.swift; sourceTree = "<group>"; };
 		5F340ABE1F7A73F300520C30 /* NotificationObjectTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationObjectTest.swift; sourceTree = "<group>"; };
 		5F340AC51F7A810000520C30 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		5F5B1E9020A636EE00A8B95C /* UIHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
+		5F5B1E9320A637FA00A8B95C /* AttachmentIdentifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttachmentIdentifier.swift; sourceTree = "<group>"; };
 		C8E8B39885B3BFD04254F0B7 /* Pods-LocalNotifications_Over_iOS10.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocalNotifications_Over_iOS10.release.xcconfig"; path = "Pods/Target Support Files/Pods-LocalNotifications_Over_iOS10/Pods-LocalNotifications_Over_iOS10.release.xcconfig"; sourceTree = "<group>"; };
 		DAC1C0E65D7B5F308079A101 /* Pods-LocalNotifications_Over_iOS10.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocalNotifications_Over_iOS10.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LocalNotifications_Over_iOS10/Pods-LocalNotifications_Over_iOS10.debug.xcconfig"; sourceTree = "<group>"; };
 		F5848FD45ED2F74325DF0F78 /* Pods_LocalNotifications_Over_iOS10.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LocalNotifications_Over_iOS10.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -119,7 +123,8 @@
 			isa = PBXGroup;
 			children = (
 				5F11D8D51F7A307700A43DF5 /* NotificationManager.swift */,
-				5F11D8D71F7A30B400A43DF5 /* NotificationObject.swift */,
+				5F5B1E9220A637FA00A8B95C /* Models */,
+				5F5B1E8F20A636EE00A8B95C /* Helpers */,
 			);
 			path = NotificationManager;
 			sourceTree = "<group>";
@@ -132,6 +137,23 @@
 				5F340AB61F7A73BD00520C30 /* Info.plist */,
 			);
 			path = LocalNotifications_Over_iOS10Tests;
+			sourceTree = "<group>";
+		};
+		5F5B1E8F20A636EE00A8B95C /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				5F5B1E9020A636EE00A8B95C /* UIHelper.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		5F5B1E9220A637FA00A8B95C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				5F5B1E9320A637FA00A8B95C /* AttachmentIdentifier.swift */,
+				5F11D8D71F7A30B400A43DF5 /* NotificationObject.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		88D9150D3DB913EEC078ED8C /* Frameworks */ = {
@@ -322,9 +344,11 @@
 			files = (
 				53353AE31D89F00E0069804D /* UIViewController+Extension.swift in Sources */,
 				5F11D8D81F7A30B400A43DF5 /* NotificationObject.swift in Sources */,
+				5F5B1E9420A637FA00A8B95C /* AttachmentIdentifier.swift in Sources */,
 				5F11D8D91F7A3D9200A43DF5 /* NotificationManager.swift in Sources */,
 				53353ACD1D89C7AD0069804D /* ViewController.swift in Sources */,
 				53353ACB1D89C7AD0069804D /* AppDelegate.swift in Sources */,
+				5F5B1E9120A636EE00A8B95C /* UIHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

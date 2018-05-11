@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "LocalNotifications_Over_iOS10"
-  s.version      = "0.0.6"
+  s.version      = "0.0.7"
   s.summary      = "Local notifications scheduler in Swift compatible with over iOS10"
 
   # This description is used to generate tags and improve search results.

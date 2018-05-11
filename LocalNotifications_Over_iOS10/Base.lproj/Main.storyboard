@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -28,10 +28,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wZX-j4-jE1">
-                                <rect key="frame" x="108" y="248.5" width="159" height="30"/>
-                                <state key="normal" title="Schedule a Notification"/>
+                                <rect key="frame" x="85.5" y="248.5" width="204" height="30"/>
+                                <state key="normal" title="Schedule Custom Notification"/>
                                 <connections>
-                                    <action selector="scheduleNotificationAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qxp-oa-hBe"/>
+                                    <action selector="scheduleCustomNotificationAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="T9r-W3-NZA"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qr0-vF-EOL">
@@ -62,14 +62,23 @@
                                     <action selector="removeAllDelivery:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4vL-CI-Ls3"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CsI-1t-Xgb">
+                                <rect key="frame" x="89" y="178" width="198" height="30"/>
+                                <state key="normal" title="Schedule Simple Notification"/>
+                                <connections>
+                                    <action selector="scheduleSimpleNotificationAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QJS-3g-98c"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="CsI-1t-Xgb" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="4hn-5P-d2l"/>
                             <constraint firstItem="gp6-wH-AOy" firstAttribute="top" secondItem="3nm-I6-mIX" secondAttribute="bottom" constant="40" id="7M9-cx-BGH"/>
                             <constraint firstItem="Uwa-sY-byy" firstAttribute="top" secondItem="qr0-vF-EOL" secondAttribute="bottom" constant="40" id="7Vp-zX-i0z"/>
                             <constraint firstItem="gY3-fP-Jql" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Gkg-vK-dCi"/>
                             <constraint firstItem="qr0-vF-EOL" firstAttribute="top" secondItem="wZX-j4-jE1" secondAttribute="bottom" constant="40" id="MoV-Oq-8x9"/>
                             <constraint firstItem="wZX-j4-jE1" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ORQ-qT-7X6"/>
+                            <constraint firstItem="wZX-j4-jE1" firstAttribute="top" secondItem="CsI-1t-Xgb" secondAttribute="bottom" constant="40" id="RxP-dl-ZHj"/>
                             <constraint firstItem="3nm-I6-mIX" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Su9-fF-Yja"/>
                             <constraint firstItem="qr0-vF-EOL" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="YPA-dq-Ps0"/>
                             <constraint firstItem="qr0-vF-EOL" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="e5f-pW-Rje"/>
