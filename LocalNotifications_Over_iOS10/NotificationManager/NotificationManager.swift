@@ -14,9 +14,11 @@ import SwiftDate
 
 @objc public class NotificationManager: NSObject {
 
-    public static let singletonInstance = NotificationManager()
+    private static let singletonInstance = {
+        return  NotificationManager()
+    }()
 
-    @objc public class func sharedInstance() -> NotificationManager {
+    @objc public class func shared() -> NotificationManager {
         if #available(iOS 10.0, *) {
             if  UNUserNotificationCenter.current().delegate ==  nil {
                 UNUserNotificationCenter.current().delegate = NotificationManager.singletonInstance
@@ -106,20 +108,9 @@ import SwiftDate
     private class func scheduleUNUserNotification(notificationObj:NotificationObject) {
         requestAuthorization { _ in
             let content = createNotificationContent(notificationObj: notificationObj)
+
             let trigger = calendarNotificationTrigger(notificationObj.notification, notificationObj.date,notificationObj.repeats)
-            /*
-             // Swift
-             let snoozeAction = UNNotificationAction(identifier: "Snooze",
-             title: "Snooze", options: [])
-             let deleteAction = UNNotificationAction(identifier: "CPJDeleteAction",
-             title: "Delete", options: [.destructive])
-             // Swift
-             let category = UNNotificationCategory(identifier: "CPJReminderCategory",
-             actions: [snoozeAction,deleteAction],
-             intentIdentifiers: [], options: [])
-             
-             UNUserNotificationCenter.current().setNotificationCategories([category])
-             */
+
             let request = UNNotificationRequest(identifier: notificationObj.id, content: content, trigger: trigger)
 
             UNUserNotificationCenter.current().add(request) { error in
@@ -169,9 +160,7 @@ import SwiftDate
     }
 
     @available(iOS 10.0, *)
-    private class func calendarNotificationTrigger(_ notificationType:NotificationType, _ date:Date, _ repeatDate:Repeats) -> UNCalendarNotificationTrigger {
-
-        print("print the date when show the popup is \(date)")
+    private class func calendarNotificationTrigger(_ notificationType:NotificationType, _ date:Date, _ repeatDate:Repeats) -> UNCalendarNotificationTrigger? {
 
         var repeatBool:Bool = false
         var triggerDate :DateComponents? = nil
@@ -194,11 +183,16 @@ import SwiftDate
             case .yearly: triggerDate = Calendar.current.dateComponents([.month,.weekday, .day,.hour,.minute,.second], from: updateDate)
             default: break
             }
+
+            return UNCalendarNotificationTrigger(dateMatching: triggerDate!, repeats: repeatBool)
+
+        } else {
+            let  triggerDate = Calendar.current.dateComponents([.year,.month,.day,.hour,.minute,.second], from: updateDate)
+
+            return UNCalendarNotificationTrigger(dateMatching: triggerDate,  repeats: repeatBool)
+
         }
 
-        let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDate!, repeats: repeatBool)
-
-        return trigger
     }
 
     @available(iOS 10.0, *)
@@ -214,7 +208,7 @@ import SwiftDate
 
 extension String {
     var length: Int {
-        return self.characters.count
+        return self.count
     }
 }
 

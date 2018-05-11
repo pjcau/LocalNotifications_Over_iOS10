@@ -14,7 +14,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
     }
         @IBAction func scheduleNotificationAction(_ sender: AnyObject) {
-            let notificationObj = NotificationObject.init(notification: .eventScheduleType, id: "alert", title: "iOS Presentation", subtitle: "Friday September 16th", body: "Remember to finalize your presentation for tomorrow!", badgeCount: nil, repeats: .minutely, date: Date(), userInfo: [:])
+            let notificationObj = NotificationObject(notification: .eventScheduleType, id: "alert", title: "iOS Presentation", subtitle: "Friday September 16th", body: "Remember to finalize your presentation for tomorrow!", badgeCount: nil, repeats: .minutely, date: Date(), userInfo: [:])
         NotificationManager.scheduleNotification(notificationObj:notificationObj)
     }
         @IBAction func howManyScheduledAction(_ sender: AnyObject) {
