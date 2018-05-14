@@ -12,7 +12,6 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupCustomNotification()
     }
 
     @IBAction func scheduleSimpleNotificationAction(_ sender: AnyObject) {
@@ -24,7 +23,7 @@ class ViewController: UIViewController {
 
     @IBAction func scheduleCustomNotificationAction(_ sender: AnyObject) {
 
-        let notificationObj = NotificationObject(notification: .eventScheduleType, id: "custom", title: "iOS New Api Ntification", subtitle: "Custom Notification", body: "Remember to finalize your presentation for tomorrow!", badgeCount: nil, repeats: .minutely, date: Date(), userInfo: [:], media: AttachmentIdentifier.shared().image(), mediaUrl:"kandinsky.jpg" )
+        let notificationObj = NotificationObject(notification: .eventScheduleType, id: "custom", title: "iOS New Api Notification", subtitle: "Custom Notification", body: "Remember to finalize your presentation for tomorrow!", badgeCount: nil, repeats: .minutely, date: Date(), userInfo: [:], media: AttachmentIdentifier.shared().image(), mediaUrl:"kandinsky.jpg" )
 
         NotificationManager.shared().scheduleNotification(notificationObj:notificationObj)
     }
@@ -61,28 +60,6 @@ class ViewController: UIViewController {
         }
     }
 
-    func setupCustomNotification() {
-
-        // define actions
-        if #available(iOS 10.0, *) {
-//            let ac1 = NotificationManager.shared().action(id: UNIdentifiers.reply, title: "Reply")
-            let ac2 = NotificationManager.shared().action(id: AttachmentIdentifier.shared().share(), title: "Share")
-//            let ac3 = NotificationManager.shared().action(id: UNIdentifiers.follow, title: "Follow")
-//            let ac4 = NotificationManager.shared().action(id: UNIdentifiers.destructive, title: "Cancel", options: .destructive)
-//            let ac5 = NotificationManager.shared().action(id: UNIdentifiers.direction, title: "Get Direction")
-//
-            // define categories
-//            let cat1 = NotificationManager.shared().category(identifier: UNIdentifiers.category, action: [ac1, ac2, ac3, ac4], intentIdentifiers: [])
-//            let cat2 = NotificationManager.shared().category(identifier: UNIdentifiers.customContent, action: [ac5, ac4], intentIdentifiers: [])
-            let cat3 = NotificationManager.shared().category(identifier: AttachmentIdentifier.shared().image(), action: [ac2], intentIdentifiers: [], options: .allowInCarPlay)
-             NotificationManager.shared().setupCategories([ cat3])
-        } else {
-            // Fallback on earlier versions
-        }
-
-        // Registers your app’s notification types and the custom actions that they support.
-
-    }
 }
 
 extension Date {

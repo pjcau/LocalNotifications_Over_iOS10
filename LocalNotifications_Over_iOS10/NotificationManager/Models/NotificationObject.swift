@@ -18,7 +18,7 @@ import UserNotifications
 }
 
 @objc public class NotificationObject : NSObject {
-    
+
     var notification: NotificationType
     var id: String
     var title: String
@@ -32,7 +32,7 @@ import UserNotifications
     var mediaUrl :String?
     var mediaPath:String?
     var attachment : Array<Any>?
-    
+
     @objc public init(notification: NotificationType, id: String, title: String, subtitle: String, body: String, badgeCount: NSNumber?, repeats : Repeats, date:Date, userInfo: [AnyHashable: Any] = [:], media: String? = nil, mediaUrl : String? = nil, mediaPath:String? = nil) {
         self.notification = notification
         switch notification {
@@ -57,7 +57,7 @@ import UserNotifications
         self.mediaPath = mediaPath
         super.init()
     }
-    
+
     @available(iOS 10.0, *)
     @objc public func addAttachment(_ urlPathFile:String) {
         let attachmentURL = NSURL.fileURL(withPath: urlPathFile)
@@ -65,6 +65,5 @@ import UserNotifications
             self.attachment?.append(attachment)
         }
     }
-    
-}
 
+}
