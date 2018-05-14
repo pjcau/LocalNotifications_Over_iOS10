@@ -45,10 +45,10 @@ public protocol NotificationManagerDelegate: class {
 
     // MARK: Public
 
-    @objc public func setDelegate(_ obj:AnyObject) {
+    @objc public func setDelegate(_ object:AnyObject) {
 
         if #available(iOS 10.0, *) {
-            delegate = obj as? NotificationManagerDelegate
+            delegate = object as? NotificationManagerDelegate
         }
 
     }
