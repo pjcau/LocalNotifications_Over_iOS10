@@ -267,9 +267,11 @@ public protocol NotificationManagerDelegate: class {
                 content.attachments.removeAll(keepingCapacity: true)
                 content.attachments.append(attachment)
             }
-            content.categoryIdentifier = media
 
         }
+
+        content.categoryIdentifier = notificationObj.categoryType
+
         return content
     }
 

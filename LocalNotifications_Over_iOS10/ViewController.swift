@@ -16,14 +16,14 @@ class ViewController: UIViewController {
 
     @IBAction func scheduleSimpleNotificationAction(_ sender: AnyObject) {
 
-        let notificationObj = NotificationObject(notification: .eventScheduleType, id: "simple", title: "iOS New Api Ntification", subtitle: "Simple Notification", body: "Remember to finalize your presentation for tomorrow!", badgeCount: nil, repeats: .minutely, date: Date(), userInfo: [:])
+        let notificationObj = NotificationObject(notification: .eventScheduleType, id: "simple", title: "iOS New Api Ntification", subtitle: "Simple Notification", body: "Remember to finalize your presentation for tomorrow!", badgeCount: nil, repeats: .minutely, date: Date(), userInfo: [:], categoryType:"none")
 
         NotificationManager.shared().scheduleNotification(notificationObj:notificationObj)
     }
 
     @IBAction func scheduleCustomNotificationAction(_ sender: AnyObject) {
 
-        let notificationObj = NotificationObject(notification: .eventScheduleType, id: "custom", title: "iOS New Api Notification", subtitle: "Custom Notification", body: "Remember to finalize your presentation for tomorrow!", badgeCount: nil, repeats: .minutely, date: Date(), userInfo: [:], media: AttachmentIdentifier.shared().image(), mediaUrl:"kandinsky.jpg" )
+        let notificationObj = NotificationObject(notification: .eventScheduleType, id: "custom", title: "iOS New Api Notification", subtitle: "Custom Notification", body: "Remember to finalize your presentation for tomorrow!", badgeCount: nil, repeats: .minutely, date: Date(), userInfo: [:], categoryType:AttachmentIdentifier.shared().image(),  media: AttachmentIdentifier.shared().image(), mediaUrl:"kandinsky.jpg" )
 
         NotificationManager.shared().scheduleNotification(notificationObj:notificationObj)
     }

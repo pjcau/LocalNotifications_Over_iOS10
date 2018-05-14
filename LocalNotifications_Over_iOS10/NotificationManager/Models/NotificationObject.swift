@@ -32,8 +32,9 @@ import UserNotifications
     var mediaUrl :String?
     var mediaPath:String?
     var attachment : Array<Any>?
+    var categoryType :String = "none"
 
-    @objc public init(notification: NotificationType, id: String, title: String, subtitle: String, body: String, badgeCount: NSNumber?, repeats : Repeats, date:Date, userInfo: [AnyHashable: Any] = [:], media: String? = nil, mediaUrl : String? = nil, mediaPath:String? = nil) {
+    @objc public init(notification: NotificationType, id: String, title: String, subtitle: String, body: String, badgeCount: NSNumber?, repeats : Repeats, date:Date, userInfo: [AnyHashable: Any] = [:], categoryType:String , media: String? = nil, mediaUrl : String? = nil, mediaPath:String? = nil) {
         self.notification = notification
         switch notification {
         case .noneType:
@@ -52,6 +53,7 @@ import UserNotifications
         self.repeats = repeats
         self.date = date
         self.userInfo = userInfo
+        self.categoryType = categoryType
         self.media = media
         self.mediaUrl = mediaUrl
         self.mediaPath = mediaPath
