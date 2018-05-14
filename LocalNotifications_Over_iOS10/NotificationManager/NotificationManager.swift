@@ -12,7 +12,7 @@ import CoreLocation
 import UIKit
 import SwiftDate
 
-protocol NotificationManagerDelegate: class {
+public protocol NotificationManagerDelegate: class {
     @available(iOS 10.0, *)
     func userNotificationManager(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void)
 
@@ -39,11 +39,29 @@ protocol NotificationManagerDelegate: class {
         return NotificationManager.singletonInstance
     }
 
-    private override init() {
+    public override init() {
         //This prevents others from using the default '()' initializer for this class.
     }
 
     // MARK: Public
+
+    @objc public func setDelegate(_ obj:AnyObject) {
+
+        if #available(iOS 10.0, *) {
+            delegate = obj as? NotificationManagerDelegate
+        }
+
+    }
+
+    public func getDelegate() -> NotificationManagerDelegate? {
+
+        if let delegate = delegate {
+            if #available(iOS 10.0, *) {
+                return  delegate
+            }
+        }
+        return nil
+    }
 
     @objc public func scheduleNotification(notificationObj notificationObject:NotificationObject) {
 

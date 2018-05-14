@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, NotificationManagerDelega
 
         if #available(iOS 10.0, *) {
             UNUserNotificationCenter.current().delegate = NotificationManager.shared()
-            NotificationManager.shared().delegate = self
+            NotificationManager.shared().setDelegate(self)
             setupCustomNotification()
         }
 
