@@ -1,5 +1,5 @@
 //
-//  UIHelper.swift
+//  NotificationHelper.swift
 //  iOS10_LocalNotifications
 //
 //  Created by Cau Pierre Jonny on 2017-09-26.
@@ -8,11 +8,11 @@
 
 import UIKit
 
-/// `UIHelper` helper class.
+/// NotificationHelper class.
 ///
-final class UIHelper {
+@objc public class NotificationHelper: NSObject {
 
-    class func storeImage(_ image: UIImage, _ name: String) -> URL? {
+    @objc public class func storeImage(_ image: UIImage, _ name: String) -> URL? {
         let data = UIImagePNGRepresentation(image)
 
         let path = FileManager.default.urls(for: FileManager.SearchPathDirectory.cachesDirectory, in: FileManager.SearchPathDomainMask.userDomainMask)[0]
@@ -30,7 +30,7 @@ final class UIHelper {
         }
     }
 
-    class func saveImage(name: String, path: String?) -> URL? {
+    @objc public  class func saveImage(name: String, path: String?) -> URL? {
 
         guard let image = UIImage(named: name) else {
             guard let path = path, let image = UIImage(contentsOfFile: path) else {

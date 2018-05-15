@@ -256,7 +256,7 @@ public protocol NotificationManagerDelegate: class {
     @available(iOS 10.0, *)
     private func customCategory( _ notificationObj:NotificationObject , _ content : UNMutableNotificationContent ) -> UNMutableNotificationContent {
 
-        if let name = notificationObj.mediaUrl, let media = notificationObj.media, let url = UIHelper.saveImage(name: name,path:  notificationObj.mediaPath ) {
+        if let name = notificationObj.mediaUrl, let media = notificationObj.media, let url = NotificationHelper.saveImage(name: name,path:  notificationObj.mediaPath ) {
             print("url is \(url)")
 
             let attachment = try? UNNotificationAttachment(identifier: media,
