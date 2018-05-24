@@ -176,9 +176,10 @@ public protocol NotificationManagerDelegate: class {
             UNUserNotificationCenter.current().add(request) { error in
                 // Use this block to determine if the notification request was added successfully.
                 if error == nil {
-                    NSLog("Notification scheduled")
+                    Logger.log(message: "Notification scheduled", event: .info)
+
                 } else {
-                    NSLog("Error scheduling notification")
+                    Logger.log(message: "Error scheduling notification", event: .info)
                 }
             }
         }
@@ -257,7 +258,7 @@ public protocol NotificationManagerDelegate: class {
     private func customCategory( _ notificationObj:NotificationObject , _ content : UNMutableNotificationContent ) -> UNMutableNotificationContent {
 
         if let name = notificationObj.mediaUrl, let media = notificationObj.media, let url = NotificationHelper.saveImage(name: name,path:  notificationObj.mediaPath ) {
-            print("url is \(url)")
+            Logger.log(message: "url is \(url)", event: .info)
 
             let attachment = try? UNNotificationAttachment(identifier: media,
                                                            url: url,

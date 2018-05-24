@@ -16,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, NotificationManagerDelega
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
+        Logger.enabled = true
         if #available(iOS 10.0, *) {
             UNUserNotificationCenter.current().delegate = NotificationManager.shared()
             NotificationManager.shared().setDelegate(self)
@@ -47,18 +48,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, NotificationManagerDelega
     func userNotificationManager(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
 
         if response.notification.request.content.categoryIdentifier ==  AttachmentIdentifier.shared().image() {
-            print("categoryIdentifier is Image")
+            Logger.log(message: "categoryIdentifier is Image", event: .info)
 
             // Retrieve the meeting details.
             switch response.actionIdentifier {
             case AttachmentIdentifier.shared().share():
-                 print("Share button pressed on notification")
+                Logger.log(message: "Share button pressed on notification", event: .info)
 
                  break
 
             case UNNotificationDefaultActionIdentifier,
                  UNNotificationDismissActionIdentifier:
-                 print("UNNotificationDefaultActionIdentifier or UNNotificationDismissActionIdentifier")
+                Logger.log(message: "UNNotificationDefaultActionIdentifier or UNNotificationDismissActionIdentifier", event: .info)
                  break
 
             default:
@@ -76,7 +77,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, NotificationManagerDelega
     func userNotificationManager(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
 
         if notification.request.content.categoryIdentifier ==  AttachmentIdentifier.shared().image() {
-            print("categoryIdentifier is Image")
+            Logger.log(message: "categoryIdentifier is Image", event: .info)
             completionHandler([.sound, .alert])
             return
 
